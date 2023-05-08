@@ -40,4 +40,5 @@ public class Account {
 
     @Column(name = "customer_id", nullable = false)
     private Integer customerId;
+
 }
