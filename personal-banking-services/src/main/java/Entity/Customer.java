@@ -47,6 +47,7 @@ public class Customer {
     @Column(name = "other_details")
     private String otherDetails;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "customer_types_code", nullable = false)
     private String customerTypesCode;
 
