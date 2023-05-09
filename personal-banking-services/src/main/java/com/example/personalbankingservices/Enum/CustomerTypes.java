@@ -1,4 +1,4 @@
-package Enum;
+package com.example.personalbankingservices.Enum;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

@@ -1,5 +1,6 @@
-package Entity;
+package com.example.personalbankingservices.Entity;
 
+import com.example.personalbankingservices.Enum.AccountTypes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,10 +36,15 @@ public class Account {
     @Column(name = "other_account_details")
     private String otherAccountDetails;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "account_types_code", nullable = false)
-    private String accountTypesCode;
+    private AccountTypes accountTypesCode;
 
     @Column(name = "customer_id", nullable = false)
     private Integer customerId;
+
+
+
+
 
 }

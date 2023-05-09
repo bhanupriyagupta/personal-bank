@@ -1,5 +1,6 @@
-package Entity;
+package com.example.personalbankingservices.Entity;
 
+import com.example.personalbankingservices.Enum.CustomerTypes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,7 @@ public class Customer {
     @Column(name = "customer_phone", nullable = false)
     private String customerPhone;
 
-    @Column(name = "customer_Email", nullable = false)
+    @Column(name = "customer_email", nullable = false)
     private String customerEmail;
 
     @Column(name = "date_became_customer", nullable = false)
@@ -49,6 +50,6 @@ public class Customer {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "customer_types_code", nullable = false)
-    private String customerTypesCode;
+    private CustomerTypes customerTypesCode;
 
 }
