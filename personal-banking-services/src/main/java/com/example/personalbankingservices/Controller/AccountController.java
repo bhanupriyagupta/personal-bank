@@ -2,6 +2,7 @@ package com.example.personalbankingservices.Controller;
 
 import com.example.personalbankingservices.Entity.Account;
 import com.example.personalbankingservices.Service.AccountService;
+import com.example.personalbankingservices.bean.AccTransactionBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,5 +39,10 @@ public class AccountController {
     @RequestMapping(value = "/account/{id}", method = RequestMethod.PUT)
     public void updateAccount(@PathVariable Integer id, @RequestBody Account account){
         accountService.updateAccount(id,account);
+    }
+
+    @RequestMapping(value = "/account/transaction", method = RequestMethod.POST)
+    public String transaction(@RequestBody AccTransactionBean txBean){
+       return accountService.transaction(txBean.getSourceAccountId(), txBean.getDestAccountId(), txBean.getAmount());
     }
 }

@@ -12,6 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "account")
 public class Account {
 
     @Id
@@ -40,10 +41,16 @@ public class Account {
     @Column(name = "account_types_code", nullable = false)
     private AccountTypes accountTypesCode;
 
-    @Column(name = "customer_id", nullable = false)
+    @Column(name = "customer_id", nullable = false, updatable = false, insertable = false)
     private Integer customerId;
 
+    @Column(name = "balance")
+    private Double balance;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id",referencedColumnName = "customer_id", updatable = false, insertable = false)
+
+    private Customer customer;
 
 
 

@@ -1,17 +1,21 @@
 package com.example.personalbankingservices.Entity;
 
 import com.example.personalbankingservices.Enum.CustomerTypes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "customer")
 public class Customer {
 
     @Id
@@ -51,5 +55,13 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     @Column(name = "customer_types_code", nullable = false)
     private CustomerTypes customerTypesCode;
+
+
+    /* jsonignore annotation is used to resolve below error
+    Could not write JSON: Infinite recursion (StackOverflowError); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Infinite recursion
+     */
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer")
+    List<Account> accounts;
 
 }

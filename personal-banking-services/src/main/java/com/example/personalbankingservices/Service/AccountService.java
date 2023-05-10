@@ -37,4 +37,46 @@ public class AccountService {
         accountRepository.save(account);
     }
 
+    public String transaction(Integer sourceId, Integer destId, Double withdrawAmount){
+        Optional<Account> sourceAccountOpt = accountRepository.findById(sourceId);
+        Optional<Account> destAccountOpt = accountRepository.findById(destId);
+
+        Account sourceAccount = null;
+
+        if(sourceAccountOpt.isPresent()){
+            sourceAccount = sourceAccountOpt.get();
+        }
+        else{
+            return "Invalid Source Account ID";
+        }
+
+        Account destAccount = null;
+
+        if(destAccountOpt.isPresent()){
+            destAccount = destAccountOpt.get();
+        }
+        else{
+            return "Invalid Destination Account ID";
+        }
+
+        Double sourceBalance = sourceAccount.getBalance();
+        Double destBalance = destAccount.getBalance();
+
+        if(sourceBalance >= withdrawAmount){
+           destBalance = destBalance + withdrawAmount;
+           sourceBalance = sourceBalance - withdrawAmount;
+
+           sourceAccount.setBalance(sourceBalance);
+           destAccount.setBalance(destBalance);
+
+           accountRepository.save(sourceAccount);
+            accountRepository.save(destAccount);
+        }
+        else {
+            return "source account does not have required balance";
+        }
+
+        return "transaction successful";
+    }
+
 }
